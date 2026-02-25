@@ -1,0 +1,607 @@
+<!doctype html>
+<html lang="es" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Chispas — Eventos y Recreación</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Tailwind CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            scrollMargin: {
+              24: "6rem",
+            },
+          },
+        },
+      };
+    </script>
+
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+
+  <body class="bg-white dark:bg-slate-900 text-gray-900 dark:text-gray-100">
+    <!-- ================= HEADER ================= -->
+    <header
+      class="fixed w-full top-0 left-0 z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md shadow-md"
+    >
+      <div
+        class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center"
+      >
+        <!-- LOGO -->
+        <a href="#inicio" class="flex items-center">
+          <img
+            src="assets/logo.png"
+            alt="Logo Chispas"
+            class="h-12 w-auto object-contain transition-transform duration-300 hover:scale-105"
+          />
+        </a>
+
+        <!-- DESKTOP MENU -->
+        <nav class="hidden md:flex gap-8 font-semibold">
+          <a href="#servicios" class="hover:text-purple-500 transition"
+            >Servicios</a
+          >
+          <a href="#galeria" class="hover:text-emerald-500 transition"
+            >Galería</a
+          >
+          <a href="#contacto" class="hover:text-yellow-500 transition"
+            >Contacto</a
+          >
+        </nav>
+
+        <!-- BOTONES -->
+        <div class="flex items-center gap-4">
+          <button
+            id="themeToggle"
+            class="text-xl transition-transform hover:rotate-12"
+          >
+            🌙
+          </button>
+
+          <!-- BOTÓN MOBILE  -->
+          <button
+            id="menuToggle"
+            aria-label="Abrir menú"
+            aria-expanded="false"
+            class="md:hidden relative w-4 h-4 flex flex-col justify-between items-center z-50"
+          >
+            <span
+              class="bar w-4 h-0.5 bg-slate-900 dark:bg-white transition-all duration-300"
+            ></span>
+            <span
+              class="bar w-4 h-0.5 bg-slate-900 dark:bg-white transition-all duration-300"
+            ></span>
+            <span
+              class="bar w-4 h-0.5 bg-slate-900 dark:bg-white transition-all duration-300"
+            ></span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- ================= MOBILE MENU CORREGIDO ================= -->
+    <div
+      id="mobileMenu"
+      class="fixed inset-0 bg-slate-950/95 backdrop-blur-xl translate-x-full transition-transform duration-500 ease-in-out z-40 flex flex-col"
+    >
+      <div
+        class="flex flex-col items-center justify-center flex-1 gap-8 text-base font-semibold"
+      >
+        <a
+          href="#servicios"
+          class="menu-link text-white hover:text-yellow-400 transition"
+          >Servicios</a
+        >
+        <a
+          href="#galeria"
+          class="menu-link text-white hover:text-cyan-400 transition"
+          >Galería</a
+        >
+        <a
+          href="#contacto"
+          class="menu-link text-white hover:text-purple-400 transition"
+          >Contacto</a
+        >
+      </div>
+    </div>
+
+    <!-- ================= HERO ================= -->
+    <section
+      id="inicio"
+      class="relative h-screen flex items-center justify-center overflow-hidden"
+    >
+      <canvas
+        id="heroCanvas"
+        class="absolute inset-0 w-full h-full opacity-95"
+      ></canvas>
+
+      <div
+        class="relative z-10 text-center px-6 flex flex-col items-center justify-center"
+      >
+        <img
+          src="/assets/logo.png"
+          alt="Logo"
+          class="w-40 sm:w-56 md:w-72 lg:w-80 mb-8 md:mb-10 drop-shadow-2xl animate-pulse-slow"
+        />
+
+        <p
+          class="text-xl sm:text-4xl md:text-6xl font-semibold text-white dark:text-white leading-snug mb-6 transparent"
+        >
+          Creamos
+          <span
+            id="changing-word"
+            class="block text-4xl sm:text-4xl md:text-6xl font-bold"
+          >
+          </span>
+        </p>
+
+        <div class="flex flex-col sm:flex-row gap-4 mt-4 pt-6">
+          <a
+            href="#contacto"
+            class="bg-pink-500 hover:bg-purple-600 transition duration-300 px-8 py-4 rounded-full text-white font-bold shadow-xl"
+          >
+            Cotizar Evento
+          </a>
+
+          <a
+            href="#servicios"
+            class="bg-yellow-400 hover:bg-purple-500 transition duration-300 px-8 py-4 rounded-full text-white font-bold shadow-xl"
+          >
+            Ver Servicios
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= SERVICIOS ================= -->
+    <section
+      id="servicios"
+      class="py-20 bg-gradient-to-b from-pink-50 to-yellow-50"
+    >
+      <h2
+        class="text-4xl md:text-5xl font-extrabold text-center mb-16 text-slate-900 dark:text-slate-800 transition-colors duration-300"
+      >
+        Nuestros Servicios
+      </h2>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-12 px-6 md:px-16">
+        <!-- Recreación -->
+        <div
+          class="relative bg-white dark:bg-slate-800 rounded-3xl p-8 shadow-xl hover:-translate-y-3 hover:shadow-2xl transition duration-500 group overflow-hidden"
+        >
+          <div
+            class="absolute -top-10 -right-10 w-40 h-40 bg-pink-400 opacity-20 blur-3xl group-hover:opacity-40 transition"
+          ></div>
+
+          <div
+            class="relative mx-auto w-32 h-32 flex items-center justify-center"
+          >
+            <img
+              src="/assets/R-ICO.png"
+              class="w-full h-full object-contain drop-shadow-2xl group-hover:scale-110 group-hover:rotate-6 transition duration-500"
+              alt="Recreación"
+            />
+          </div>
+
+          <h3 class="text-2xl font-bold mt-8 mb-4 dark:text-white">
+            Recreación Infantil
+          </h3>
+
+          <p class="text-gray-600 dark:text-gray-300 leading-relaxed mb-4">
+            Actividades dinámicas que fortalecen la integración y estimulan la
+            diversion y creatividad.
+          </p>
+
+          <ul class="text-sm text-gray-500 dark:text-gray-400 space-y-2">
+            <li>✔ Juegos cooperativos</li>
+            <li>✔ Dinámicas grupales</li>
+            <li>✔ Adaptado por edades</li>
+          </ul>
+        </div>
+
+        <!-- Animación -->
+        <div
+          class="relative bg-white dark:bg-slate-800 rounded-3xl p-8 shadow-xl hover:-translate-y-3 hover:shadow-2xl transition duration-500 group overflow-hidden"
+        >
+          <div
+            class="absolute -bottom-10 -left-10 w-40 h-40 bg-purple-400 opacity-20 blur-3xl group-hover:opacity-40 transition"
+          ></div>
+
+          <div
+            class="relative mx-auto w-32 h-32 flex items-center justify-center"
+          >
+            <img
+              src="/assets/A-ICO.png"
+              class="w-full h-full object-contain drop-shadow-2xl group-hover:scale-110 group-hover:-rotate-6 transition duration-500"
+              alt="Animación"
+            />
+          </div>
+
+          <h3 class="text-2xl font-bold mt-8 mb-4 dark:text-white">
+            Animación Profesional
+          </h3>
+
+          <p class="text-gray-600 dark:text-gray-300 leading-relaxed mb-4">
+            Animacion interactiva que eleva la energía del evento.
+          </p>
+
+          <ul class="text-sm text-gray-500 dark:text-gray-400 space-y-2">
+            <li>✔ Tematicas personalizadas</li>
+            <li>✔ Coreografías</li>
+            <li>✔ Música y sonido</li>
+          </ul>
+        </div>
+
+        <!-- Producción -->
+        <div
+          class="relative bg-white dark:bg-slate-800 rounded-3xl p-8 shadow-xl hover:-translate-y-3 hover:shadow-2xl transition duration-500 group overflow-hidden"
+        >
+          <div
+            class="absolute -top-10 -left-10 w-40 h-40 bg-yellow-400 opacity-20 blur-3xl group-hover:opacity-40 transition"
+          ></div>
+
+          <div
+            class="relative mx-auto w-32 h-32 flex items-center justify-center"
+          >
+            <img
+              src="/assets/E-ICO.png"
+              class="w-full h-full object-contain drop-shadow-2xl group-hover:scale-110 group-hover:rotate-6 transition duration-500"
+              alt="Eventos"
+            />
+          </div>
+
+          <h3 class="text-2xl font-bold mt-8 mb-4 dark:text-white">
+            Producción de Eventos
+          </h3>
+
+          <p class="text-gray-600 dark:text-gray-300 leading-relaxed mb-4">
+            Organización integral con logística profesional.
+          </p>
+
+          <ul class="text-sm text-gray-500 dark:text-gray-400 space-y-2">
+            <li>✔ Coordinación completa</li>
+            <li>✔ Ambientación temática</li>
+            <li>✔ Experiencia memorable</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= GALERÍA ================= -->
+    <section id="galeria" class="scroll-mt-24 py-24 max-w-7xl mx-auto px-6">
+      <h2 class="text-4xl md:text-5xl font-extrabold text-center mb-16">
+        Momentos Chispas
+      </h2>
+
+      <p
+        class="text-center text-sm text-slate-500 dark:text-slate-400 max-w-2xl mx-auto mb-10"
+      >
+        En cumplimiento de la Ley 1581 de 2012 y el Decreto 1377 de 2013, las
+        imágenes y videos publicados en esta galería cuentan con autorización
+        previa para el uso de imagen y datos personales con fines promocionales.
+        Si deseas ejercer tus derechos de acceso, corrección o supresión de
+        datos, puedes contactarnos.
+        <button
+          id="openPrivacyModal"
+          class="underline hover:text-pink-500 transition"
+        >
+          Ver política completa de tratamiento de datos.
+        </button>
+      </p>
+
+      <div class="grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+        <!-- 1 -->
+        <button
+          class="gallery-item group relative"
+          data-type="image"
+          data-src="assets/gallery/1.png"
+        >
+          <img
+            src="assets/gallery/1.png"
+            class="w-full h-64 object-cover rounded-xl shadow-lg transition duration-500 group-hover:scale-105"
+          />
+
+          <div
+            class="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition rounded-xl"
+          ></div>
+        </button>
+        <!--2-->
+        <button
+          class="gallery-item group relative"
+          data-type="image"
+          data-src="assets/gallery/2.png"
+        >
+          <img
+            src="assets/gallery/2.png"
+            alt=""
+            class="w-full h-64 object-cover rounded-xl shadow-lg transition duration-500 group-hover:scale-105"
+          />
+        </button>
+        <!--3-->
+        <button
+          class="gallery-item group relative"
+          data-type="image"
+          data-src="assets/gallery/3.png"
+        >
+          <img
+            src="assets/gallery/3.png"
+            alt=""
+            class="w-full h-64 object-cover rounded-xl shadow-lg transition duration-500 group-hover:scale-105"
+          />
+        </button>
+        <!--4-->
+        <button
+          class="gallery-item group relative"
+          data-type="image"
+          data-src="assets/gallery/4.png"
+        >
+          <img
+            src="assets/gallery/4.png"
+            alt=""
+            class="w-full h-64 object-cover rounded-xl shadow-lg transition duration-500 group-hover:scale-105"
+          />
+        </button>
+        <!--v1-->
+      </div>
+
+      <!-- GALLERY FOOTER MESSAGE -->
+      <div class="mt-20">
+        <div
+          class="relative mx-auto max-w-4xl rounded-3xl p-8 md:p-12 text-center transition-colors duration-300 bg-white/80 dark:bg-gradient-to-br dark:from-slate-900 dark:to-slate-800 backdrop-blur-xl border border-slate-200 dark:border-pink-500/20 shadow-xl dark:shadow-2xl"
+        >
+          <h3
+            class="text-2xl md:text-3xl font-bold mb-4 text-slate-800 dark:text-white"
+          >
+            ⚠️ Estamos creando más momentos mágicos ✨
+          </h3>
+
+          <p
+            class="text-sm md:text-base max-w-2xl mx-auto leading-relaxed mb-6 text-slate-600 dark:text-slate-300"
+          >
+            Nuestra empresa y nuestro equipo siguen creciendo y seguiran
+            creciendo, gracias a ti. Muy pronto encontrarás aquí mismito más
+            experiencias inolvidables que hemos vivido junto a nuestros
+            clientes. Gracias por acompañarnos en este proceso.
+          </p>
+
+          <a
+            href="#contacto"
+            class="inline-block px-8 py-3 rounded-full font-semibold transition-all duration-300 bg-pink-500 hover:bg-pink-600 text-white shadow-lg hover:shadow-pink-500/30"
+          >
+            Creemos tu momento mágico...
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= CONTACTO ================= -->
+    <section
+      id="contacto"
+      class="py-20 px-4 bg-slate-50 dark:bg-slate-900 transition-colors duration-300"
+    >
+      <div class="max-w-md mx-auto">
+        <div
+          class="bg-white dark:bg-slate-800 rounded-3xl shadow-xl p-8 space-y-6 border border-slate-200 dark:border-slate-700"
+        >
+          <h2
+            class="text-2xl font-bold text-center text-slate-800 dark:text-white"
+          >
+            Contáctanos
+          </h2>
+
+          <!-- INPUT -->
+          <input
+            type="text"
+            placeholder="¿Con quién tenemos el gusto?"
+            class="w-full px-4 py-3 rounded-xl bg-slate-100 dark:bg-slate-700 text-slate-800 dark:text-white border border-slate-200 dark:border-slate-600 focus:outline-none focus:ring-2 focus:ring-pink-500 transition"
+          />
+
+          <!-- TEXTAREA -->
+          <textarea
+            placeholder="Cuéntanos sobre tu evento..."
+            rows="4"
+            class="w-full px-4 py-3 rounded-xl bg-slate-100 dark:bg-slate-700 text-slate-800 dark:text-white border border-slate-200 dark:border-slate-600 focus:outline-none focus:ring-2 focus:ring-pink-500 transition"
+          ></textarea>
+
+          <!-- BOTÓN -->
+          <button
+            class="w-full py-3 rounded-xl font-semibold bg-pink-500 hover:bg-green-600 text-white transition shadow-md"
+          >
+            Enviar Mensaje
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= BOTÓN HELADO ================= -->
+    <button
+      id="scrollTop"
+      class="fixed bottom-6 left-6 w-16 h-16 rounded-full bg-gradient-to-br from-pink-500 to-purple-500 text-white text-2xl flex items-center justify-center shadow-xl transition-all duration-300 scale-0"
+    >
+      🍦
+    </button>
+
+    <!-- ================= WHATSAPP ================= -->
+    <a
+      href="https://wa.me/573212131862"
+      target="_blank"
+      class="fixed bottom-6 right-6 z-50"
+    >
+      <div class="relative">
+        <span
+          class="absolute inline-flex h-full w-full rounded-full bg-green-500 opacity-75 animate-ping"
+        ></span>
+
+        <div
+          class="relative bg-green-500 hover:bg-green-600 text-white p-3 rounded-full shadow-2xl text-3xl transition transform hover:scale-105"
+        >
+          <i class="fa-brands fa-whatsapp"></i>
+        </div>
+      </div>
+    </a>
+
+    <!-- GALLERY MODAL -->
+
+    <div
+      id="galleryModal"
+      class="fixed inset-0 bg-black/80 backdrop-blur-md hidden items-center justify-center z-[999] p-6 transition-opacity duration-300"
+    >
+      <div class="relative w-full max-w-6xl">
+        <!-- Close -->
+        <button
+          id="closeModal"
+          class="absolute -top-14 right-0 text-white text-3xl hover:text-pink-400 transition"
+        >
+          ✕
+        </button>
+
+        <!-- Counter -->
+        <div
+          id="modalCounter"
+          class="absolute -top-14 left-0 text-white text-sm opacity-70"
+        ></div>
+
+        <!-- Arrows -->
+        <button
+          id="prevBtn"
+          class="absolute left-0 top-1/2 -translate-y-1/2 text-white text-4xl px-4 hover:text-pink-400 transition"
+        >
+          ‹
+        </button>
+
+        <button
+          id="nextBtn"
+          class="absolute right-0 top-1/2 -translate-y-1/2 text-white text-4xl px-4 hover:text-pink-400 transition"
+        >
+          ›
+        </button>
+
+        <!-- Content -->
+        <div
+          id="modalContent"
+          class="flex items-center justify-center max-h-[85vh] transition-transform duration-300 scale-95 opacity-0"
+        ></div>
+      </div>
+    </div>
+
+    <!-- PRIVACY MODAL -->
+    <div
+      id="privacyModal"
+      class="fixed inset-0 bg-black/70 backdrop-blur-md hidden items-center justify-center z-[999] p-6"
+    >
+      <div
+        class="relative w-full max-w-4xl rounded-3xl bg-gradient-to-br from-slate-900 to-slate-800 text-slate-200 shadow-2xl border border-slate-700 overflow-hidden animate-fadeIn"
+      >
+        <!-- Header -->
+        <div
+          class="px-10 py-8 border-b border-slate-700 bg-slate-900/60 backdrop-blur-md"
+        >
+          <h3 class="text-3xl font-bold tracking-tight">
+            Política de Tratamiento de Datos
+          </h3>
+          <p class="text-sm text-slate-400 mt-2">
+            Cumplimiento Ley 1581 de 2012 – Colombia
+          </p>
+
+          <button
+            id="closePrivacyModal"
+            class="absolute top-6 right-6 text-2xl text-slate-400 hover:text-pink-400 transition"
+          >
+            ✕
+          </button>
+        </div>
+
+        <!-- Body -->
+        <div
+          class="px-10 py-8 space-y-8 max-h-[65vh] overflow-y-auto custom-scroll"
+        >
+          <section>
+            <h4 class="text-lg font-semibold text-pink-400 mb-2">
+              1. Finalidad del tratamiento
+            </h4>
+            <p class="text-sm leading-relaxed text-slate-300">
+              Las imágenes y videos capturados durante eventos podrán ser
+              utilizados con fines promocionales, publicitarios y comerciales en
+              medios digitales, redes sociales y material institucional.
+            </p>
+          </section>
+
+          <section>
+            <h4 class="text-lg font-semibold text-pink-400 mb-2">
+              2. Derechos del titular
+            </h4>
+            <ul class="list-disc pl-6 text-sm space-y-2 text-slate-300">
+              <li>Conocer, actualizar y rectificar sus datos personales.</li>
+              <li>Solicitar prueba de la autorización otorgada.</li>
+              <li>
+                Revocar la autorización y solicitar la supresión del dato.
+              </li>
+              <li>
+                Presentar quejas ante la Superintendencia de Industria y
+                Comercio.
+              </li>
+            </ul>
+          </section>
+
+          <section>
+            <h4 class="text-lg font-semibold text-pink-400 mb-2">
+              3. Autorización
+            </h4>
+            <p class="text-sm leading-relaxed text-slate-300">
+              La captura y publicación de imágenes se realiza previa
+              autorización expresa del titular o su representante legal en caso
+              de menores de edad.
+            </p>
+          </section>
+
+          <section>
+            <h4 class="text-lg font-semibold text-pink-400 mb-2">
+              4. Protección de menores
+            </h4>
+            <p class="text-sm leading-relaxed text-slate-300">
+              El tratamiento de datos de menores se realiza garantizando el
+              interés superior del menor y con autorización del acudiente.
+            </p>
+          </section>
+
+          <section>
+            <h4 class="text-lg font-semibold text-pink-400 mb-2">
+              5. Canales de atención
+            </h4>
+            <p class="text-sm leading-relaxed text-slate-300">
+              Para ejercer sus derechos puede contactarnos mediante los canales
+              oficiales publicados en este sitio web.
+            </p>
+          </section>
+
+          <div class="pt-4 border-t border-slate-700 text-xs text-slate-400">
+            Responsable: Chispas Eventos
+            <br />
+            Última actualización: 2026
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FLOATING INFO BUTTON -->
+
+    <script src="js/main.js" defer></script>
+    <script src="https://unpkg.com/three@0.160.0/build/three.min.js"></script>
+    <script src="js/hero-three.js"></script>
+  </body>
+</html>
