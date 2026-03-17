@@ -101,3 +101,131 @@
 .animate-fadeInUp {
   animation: fadeInUp 0.6s ease-out;
 }
+
+.service-card {
+  transform-style: preserve-3d;
+  transition: all 0.45s ease;
+}
+
+.service-card:hover {
+  transform: translateY(-12px) scale(1.03);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.18);
+}
+
+.service-card:hover .service-icon {
+  transform: rotate(8deg) scale(1.1);
+}
+
+.service-badge {
+  display: block;
+  width: fit-content;
+  margin: auto;
+  padding: 5px 14px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+/* confetti */
+
+.confetti-container {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.confetti {
+  position: absolute;
+  width: 6px;
+  height: 10px;
+  opacity: 0;
+  animation: confetti-fall 1.4s linear forwards;
+}
+
+@keyframes confetti-fall {
+  0% {
+    transform: translateY(-20px) rotate(0);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(220px) rotate(720deg);
+    opacity: 0;
+  }
+}
+/* =======================
+SECCIÓN SERVICIOS
+======================= */
+
+.servicios {
+  padding: 90px 0;
+}
+
+.titulo-seccion {
+  text-align: center;
+  font-size: 36px;
+  margin-bottom: 60px;
+}
+
+.servicios-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 30px;
+}
+
+.servicio-card {
+  background: #11131a;
+  border-radius: 16px;
+
+  padding: 35px 28px;
+
+  text-align: left;
+
+  transition: all 0.35s ease;
+
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+.servicio-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.4);
+}
+
+.servicio-card img {
+  width: 55px;
+  margin-bottom: 18px;
+}
+
+.servicio-card h3 {
+  font-size: 20px;
+  margin-bottom: 12px;
+}
+
+.servicio-card p {
+  font-size: 14px;
+  line-height: 1.6;
+  color: #cfcfcf;
+  margin-bottom: 15px;
+}
+
+.ideal {
+  font-size: 13px;
+  color: #9aa4ff;
+  font-weight: 500;
+}
+
+/* =======================
+ANIMACIÓN SCROLL
+======================= */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(60px);
+  transition: all 0.8s ease;
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}

@@ -1,25 +1,18 @@
 <!doctype html>
 <html lang="es" class="scroll-smooth">
   <head>
+    <meta
+      name="description"
+      content="Chispas Eventos y Recreación en [Tu Ciudad]. Animación infantil, recreación y eventos inolvidables. Agenda tu fecha hoy."
+    />
     <meta charset="UTF-8" />
-    <title>Chispas — Eventos y Recreación</title>
+    <title>
+      Chispas Eventos en Tunja y Boyaca | Animación y Recreación Infantil
+    </title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <!-- Tailwind CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-
-    <script>
-      tailwind.config = {
-        darkMode: "class",
-        theme: {
-          extend: {
-            scrollMargin: {
-              24: "6rem",
-            },
-          },
-        },
-      };
-    </script>
 
     <!-- Font Awesome -->
     <link
@@ -140,7 +133,7 @@
         />
 
         <p
-          class="text-xl sm:text-4xl md:text-6xl font-semibold text-white dark:text-white leading-snug mb-6 transparent"
+          class="text-xl sm:text-4xl md:text-6xl font-semibold text-slate-900 dark:text-white leading-snug mb-6 transparent"
         >
           Creamos
           <span
@@ -169,115 +162,246 @@
     </section>
 
     <!-- ================= SERVICIOS ================= -->
-    <section
-      id="servicios"
-      class="py-20 bg-gradient-to-b from-pink-50 to-yellow-50"
-    >
-      <h2
-        class="text-4xl md:text-5xl font-extrabold text-center mb-16 text-slate-900 dark:text-slate-800 transition-colors duration-300"
-      >
-        Nuestros Servicios
-      </h2>
+    <section id="servicios" class="servicios">
+      <div class="container mx-auto px-4">
+        <h2 class="text-4xl md:text-5xl font-extrabold text-center mb-14">
+          Nuestros Servicios
+        </h2>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-12 px-6 md:px-16">
-        <!-- Recreación -->
-        <div
-          class="relative bg-white dark:bg-slate-800 rounded-3xl p-8 shadow-xl hover:-translate-y-3 hover:shadow-2xl transition duration-500 group overflow-hidden"
-        >
-          <div
-            class="absolute -top-10 -right-10 w-40 h-40 bg-pink-400 opacity-20 blur-3xl group-hover:opacity-40 transition"
-          ></div>
+        <p class=""></p>
 
+        <!-- GRID RESPONSIVE -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          <!-- 1 -->
           <div
-            class="relative mx-auto w-32 h-32 flex items-center justify-center"
+            class="servicio-card reveal group bg-white dark:bg-slate-800 p-7 sm:p-8 rounded-2xl shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 border border-gray-100 dark:border-slate-700 flex flex-col justify-between h-full"
           >
             <img
-              src="/assets/R-ICO.png"
-              class="w-full h-full object-contain drop-shadow-2xl group-hover:scale-110 group-hover:rotate-6 transition duration-500"
-              alt="Recreación"
+              src="/assets/CHILD-PART.png"
+              alt="Fiestas infantiles"
+              class="w-20 sm:w-24 mb-6 mx-auto transition-transform duration-300 group-hover:scale-110"
             />
+
+            <h3 class="text-xl sm:text-2xl font-bold mb-3 text-center">
+              Fiestas Infantiles
+            </h3>
+
+            <p
+              class="text-sm sm:text-base text-gray-600 dark:text-gray-300 leading-relaxed text-center"
+            >
+              Animación profesional con juegos, concursos, dinámicas recreativas
+              y música para crear celebraciones llenas de alegría y diversión
+              para los más pequeños.
+            </p>
+
+            <span
+              class="ideal text-xs sm:text-sm text-green-400 block mt-4 text-center font-medium"
+            >
+              Ideal para: cumpleaños infantiles y fiestas temáticas.
+            </span>
           </div>
 
-          <h3 class="text-2xl font-bold mt-8 mb-4 dark:text-white">
-            Recreación Infantil
-          </h3>
-
-          <p class="text-gray-600 dark:text-gray-300 leading-relaxed mb-4">
-            Actividades dinámicas que fortalecen la integración y estimulan la
-            diversion y creatividad.
-          </p>
-
-          <ul class="text-sm text-gray-500 dark:text-gray-400 space-y-2">
-            <li>✔ Juegos cooperativos</li>
-            <li>✔ Dinámicas grupales</li>
-            <li>✔ Adaptado por edades</li>
-          </ul>
-        </div>
-
-        <!-- Animación -->
-        <div
-          class="relative bg-white dark:bg-slate-800 rounded-3xl p-8 shadow-xl hover:-translate-y-3 hover:shadow-2xl transition duration-500 group overflow-hidden"
-        >
+          <!-- 2 -->
           <div
-            class="absolute -bottom-10 -left-10 w-40 h-40 bg-purple-400 opacity-20 blur-3xl group-hover:opacity-40 transition"
-          ></div>
-
-          <div
-            class="relative mx-auto w-32 h-32 flex items-center justify-center"
+            class="servicio-card reveal group bg-white dark:bg-slate-800 p-7 sm:p-8 rounded-2xl shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 border border-gray-100 dark:border-slate-700 flex flex-col justify-between h-full"
           >
             <img
-              src="/assets/A-ICO.png"
-              class="w-full h-full object-contain drop-shadow-2xl group-hover:scale-110 group-hover:-rotate-6 transition duration-500"
-              alt="Animación"
+              src="/assets/FAMILY PARTY.png"
+              alt="Eventos familiares"
+              class="w-20 sm:w-24 mb-6 mx-auto transition-transform duration-300 group-hover:scale-110"
             />
+
+            <h3 class="text-xl sm:text-2xl font-bold mb-3 text-center">
+              Eventos Familiares
+            </h3>
+
+            <p
+              class="text-sm sm:text-base text-gray-600 dark:text-gray-300 leading-relaxed text-center"
+            >
+              Actividades recreativas que integran a niños, jóvenes y adultos
+              con juegos grupales, concursos y dinámicas participativas.
+            </p>
+
+            <span
+              class="ideal text-xs sm:text-sm text-green-400 block mt-4 text-center font-medium"
+            >
+              Ideal para: reuniones familiares y celebraciones comunitarias.
+            </span>
           </div>
 
-          <h3 class="text-2xl font-bold mt-8 mb-4 dark:text-white">
-            Animación Profesional
-          </h3>
-
-          <p class="text-gray-600 dark:text-gray-300 leading-relaxed mb-4">
-            Animacion interactiva que eleva la energía del evento.
-          </p>
-
-          <ul class="text-sm text-gray-500 dark:text-gray-400 space-y-2">
-            <li>✔ Tematicas personalizadas</li>
-            <li>✔ Coreografías</li>
-            <li>✔ Música y sonido</li>
-          </ul>
-        </div>
-
-        <!-- Producción -->
-        <div
-          class="relative bg-white dark:bg-slate-800 rounded-3xl p-8 shadow-xl hover:-translate-y-3 hover:shadow-2xl transition duration-500 group overflow-hidden"
-        >
+          <!-- 3 -->
           <div
-            class="absolute -top-10 -left-10 w-40 h-40 bg-yellow-400 opacity-20 blur-3xl group-hover:opacity-40 transition"
-          ></div>
-
-          <div
-            class="relative mx-auto w-32 h-32 flex items-center justify-center"
+            class="servicio-card reveal group bg-white dark:bg-slate-800 p-7 sm:p-8 rounded-2xl shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 border border-gray-100 dark:border-slate-700 flex flex-col justify-between h-full"
           >
             <img
-              src="/assets/E-ICO.png"
-              class="w-full h-full object-contain drop-shadow-2xl group-hover:scale-110 group-hover:rotate-6 transition duration-500"
-              alt="Eventos"
+              src="/assets/SCHOOLS EVETS.png"
+              alt="Eventos escolares"
+              class="w-20 sm:w-24 mb-6 mx-auto transition-transform duration-300 group-hover:scale-110"
             />
+
+            <h3 class="text-xl sm:text-2xl font-bold mb-3 text-center">
+              Eventos para Colegios
+            </h3>
+
+            <p
+              class="text-sm sm:text-base text-gray-600 dark:text-gray-300 leading-relaxed text-center"
+            >
+              Programas recreativos y educativos con dinámicas de integración,
+              juegos y actividades diseñadas para estudiantes de diferentes
+              edades.
+            </p>
+
+            <span
+              class="ideal text-xs sm:text-sm text-green-400 block mt-4 text-center font-medium"
+            >
+              Ideal para: días recreativos, semanas culturales y eventos
+              escolares.
+            </span>
           </div>
 
-          <h3 class="text-2xl font-bold mt-8 mb-4 dark:text-white">
-            Producción de Eventos
-          </h3>
+          <!-- 4 -->
+          <div
+            class="servicio-card reveal group bg-white dark:bg-slate-800 p-7 sm:p-8 rounded-2xl shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 border border-gray-100 dark:border-slate-700 flex flex-col justify-between h-full"
+          >
+            <img
+              src="/assets/EMP EVENT.png"
+              alt="Eventos empresariales"
+              class="w-20 sm:w-24 mb-6 mx-auto transition-transform duration-300 group-hover:scale-110"
+            />
 
-          <p class="text-gray-600 dark:text-gray-300 leading-relaxed mb-4">
-            Organización integral con logística profesional.
-          </p>
+            <h3 class="text-xl sm:text-2xl font-bold mb-3 text-center">
+              Eventos para Empresas
+            </h3>
 
-          <ul class="text-sm text-gray-500 dark:text-gray-400 space-y-2">
-            <li>✔ Coordinación completa</li>
-            <li>✔ Ambientación temática</li>
-            <li>✔ Experiencia memorable</li>
-          </ul>
+            <p
+              class="text-sm sm:text-base text-gray-600 dark:text-gray-300 leading-relaxed text-center"
+            >
+              Actividades dinámicas que fortalecen el trabajo en equipo, la
+              integración laboral y la motivación del personal en un ambiente
+              divertido.
+            </p>
+
+            <span
+              class="ideal text-xs sm:text-sm text-green-400 block mt-4 text-center font-medium"
+            >
+              Ideal para: integración empresarial y eventos corporativos.
+            </span>
+          </div>
+
+          <!-- 5 -->
+          <div
+            class="servicio-card reveal group bg-white dark:bg-slate-800 p-7 sm:p-8 rounded-2xl shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 border border-gray-100 dark:border-slate-700 flex flex-col justify-between h-full"
+          >
+            <img
+              src="/assets/CIRCUS.png"
+              alt="Show de circo"
+              class="w-20 sm:w-24 mb-6 mx-auto transition-transform duration-300 group-hover:scale-110"
+            />
+
+            <h3 class="text-xl sm:text-2xl font-bold mb-3 text-center">
+              Show de Circo y Fuego
+            </h3>
+
+            <p
+              class="text-sm sm:text-base text-gray-600 dark:text-gray-300 leading-relaxed text-center"
+            >
+              Espectáculos visuales con malabares, acrobacias y shows de fuego
+              que generan impacto, emoción y entretenimiento para el público.
+            </p>
+
+            <span
+              class="ideal text-xs sm:text-sm text-green-400 block mt-4 text-center font-medium"
+            >
+              Ideal para: festivales, ferias y eventos públicos.
+            </span>
+          </div>
+
+          <!-- 6 -->
+          <div
+            class="servicio-card reveal group bg-white dark:bg-slate-800 p-7 sm:p-8 rounded-2xl shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 border border-gray-100 dark:border-slate-700 flex flex-col justify-between h-full"
+          >
+            <img
+              src="/assets/MVP.png"
+              alt="Talleres"
+              class="w-20 sm:w-24 mb-6 mx-auto transition-transform duration-300 group-hover:scale-110"
+            />
+
+            <h3 class="text-xl sm:text-2xl font-bold mb-3 text-center">
+              Talleres de Liderazgo y Bienestar
+            </h3>
+
+            <p
+              class="text-sm sm:text-base text-gray-600 dark:text-gray-300 leading-relaxed text-center"
+            >
+              Experiencias formativas que combinan liderazgo, mindfulness,
+              teatro y zumba para desarrollar habilidades personales y bienestar
+              emocional.
+            </p>
+
+            <span
+              class="ideal text-xs sm:text-sm text-green-400 block mt-4 text-center font-medium"
+            >
+              Ideal para: colegios, universidades y empresas.
+            </span>
+          </div>
+
+          <!-- 7 -->
+          <div
+            class="servicio-card reveal group bg-white dark:bg-slate-800 p-7 sm:p-8 rounded-2xl shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 border border-gray-100 dark:border-slate-700 flex flex-col justify-between h-full"
+          >
+            <img
+              src="/assets/FESTIVAL.png"
+              alt="Ferias recreativas"
+              class="w-20 sm:w-24 mb-6 mx-auto transition-transform duration-300 group-hover:scale-110"
+            />
+
+            <h3 class="text-xl sm:text-2xl font-bold mb-3 text-center">
+              Festivales y Ferias Recreativas
+            </h3>
+
+            <p
+              class="text-sm sm:text-base text-gray-600 dark:text-gray-300 leading-relaxed text-center"
+            >
+              Organización de espacios recreativos con juegos gigantes,
+              estaciones de diversión, animación y actividades para todas las
+              edades.
+            </p>
+
+            <span
+              class="ideal text-xs sm:text-sm text-green-400 block mt-4 text-center font-medium"
+            >
+              Ideal para: festivales municipales, ferias y eventos masivos.
+            </span>
+          </div>
+
+          <!-- 8 -->
+          <div
+            class="servicio-card reveal group bg-white dark:bg-slate-800 p-7 sm:p-8 rounded-2xl shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 border border-gray-100 dark:border-slate-700 flex flex-col justify-between h-full"
+          >
+            <img
+              src="/assets/ANIMACION.png"
+              alt="Animación escénica"
+              class="w-20 sm:w-24 mb-6 mx-auto transition-transform duration-300 group-hover:scale-110"
+            />
+
+            <h3 class="text-xl sm:text-2xl font-bold mb-3 text-center">
+              Animación Tematica
+            </h3>
+
+            <p
+              class="text-sm sm:text-base text-gray-600 dark:text-gray-300 leading-relaxed text-center"
+            >
+              Presentación y conducción profesional de eventos con animación en
+              escenario, interacción dinamica y activa con el público y
+              dinamización del ambiente.
+            </p>
+
+            <span
+              class="ideal text-xs sm:text-sm text-green-400 block mt-4 text-center font-medium"
+            >
+              Ideal para: eventos institucionales, ferias y celebraciones.
+            </span>
+          </div>
         </div>
       </div>
     </section>
@@ -316,9 +440,7 @@
             class="w-full h-64 object-cover rounded-xl shadow-lg transition duration-500 group-hover:scale-105"
           />
 
-          <div
-            class="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition rounded-xl"
-          ></div>
+          <div class="absolute inset-0"></div>
         </button>
         <!--2-->
         <button
@@ -352,6 +474,54 @@
         >
           <img
             src="assets/gallery/4.png"
+            alt=""
+            class="w-full h-64 object-cover rounded-xl shadow-lg transition duration-500 group-hover:scale-105"
+          />
+        </button>
+        <!--5-->
+        <button
+          class="gallery-item group relative"
+          data-type="image"
+          data-src="assets/gallery/5.png"
+        >
+          <img
+            src="assets/gallery/5.png"
+            alt=""
+            class="w-full h-64 object-cover rounded-xl shadow-lg transition duration-500 group-hover:scale-105"
+          />
+        </button>
+        <!--6-->
+        <button
+          class="gallery-item group relative"
+          data-type="image"
+          data-src="assets/gallery/11.png"
+        >
+          <img
+            src="assets/gallery/11.png"
+            alt=""
+            class="w-full h-64 object-cover rounded-xl shadow-lg transition duration-500 group-hover:scale-105"
+          />
+        </button>
+        <!--7-->
+        <button
+          class="gallery-item group relative"
+          data-type="image"
+          data-src="assets/gallery/8.png"
+        >
+          <img
+            src="assets/gallery/8.png"
+            alt=""
+            class="w-full h-64 object-cover rounded-xl shadow-lg transition duration-500 group-hover:scale-105"
+          />
+        </button>
+        <!--8-->
+        <button
+          class="gallery-item group relative"
+          data-type="image"
+          data-src="assets/gallery/9.png"
+        >
+          <img
+            src="assets/gallery/9.png"
             alt=""
             class="w-full h-64 object-cover rounded-xl shadow-lg transition duration-500 group-hover:scale-105"
           />
@@ -426,6 +596,31 @@
           </button>
         </div>
       </div>
+      <div class="max-w-6xl mx-auto px-6 flex flex-col items-center gap-6">
+        <p class="text-sm text-slate-400">
+          © 2026 Chispas Eventos y Recreación
+        </p>
+
+        <div class="flex gap-8 text-3xl">
+          <!-- Instagram -->
+          <a
+            href="stagram.com/chispaseventosyrecreacion/"
+            target="_blank"
+            class="social-neon instagram"
+          >
+            <i class="fa-brands fa-instagram"></i>
+          </a>
+
+          <!-- TikTok -->
+          <a
+            href="https://tiktok.com/"
+            target="_blank"
+            class="social-neon tiktok"
+          >
+            <i class="fa-brands fa-tiktok"></i>
+          </a>
+        </div>
+      </div>
     </section>
 
     <!-- ================= BOTÓN HELADO ================= -->
@@ -459,44 +654,43 @@
 
     <div
       id="galleryModal"
-      class="fixed inset-0 bg-black/80 backdrop-blur-md hidden items-center justify-center z-[999] p-6 transition-opacity duration-300"
+      class="fixed inset-0 bg-black/90 backdrop-blur-md hidden items-center justify-center z-50"
     >
-      <div class="relative w-full max-w-6xl">
-        <!-- Close -->
-        <button
-          id="closeModal"
-          class="absolute -top-14 right-0 text-white text-3xl hover:text-pink-400 transition"
-        >
-          ✕
-        </button>
+      <!-- Cerrar -->
+      <button
+        id="closeModal"
+        class="absolute top-6 right-6 text-white text-4xl hover:scale-110 transition z-50"
+      >
+        ✕
+      </button>
 
-        <!-- Counter -->
-        <div
-          id="modalCounter"
-          class="absolute -top-14 left-0 text-white text-sm opacity-70"
-        ></div>
+      <!-- Flecha izquierda -->
+      <button
+        id="prevBtn"
+        class="absolute left-6 top-1/2 -translate-y-1/2 text-white text-5xl z-50 hover:scale-125 transition"
+      >
+        ❮
+      </button>
 
-        <!-- Arrows -->
-        <button
-          id="prevBtn"
-          class="absolute left-0 top-1/2 -translate-y-1/2 text-white text-4xl px-4 hover:text-pink-400 transition"
-        >
-          ‹
-        </button>
+      <!-- Contenido -->
+      <div
+        id="modalContent"
+        class="relative transition-all duration-300 scale-95 opacity-0"
+      ></div>
 
-        <button
-          id="nextBtn"
-          class="absolute right-0 top-1/2 -translate-y-1/2 text-white text-4xl px-4 hover:text-pink-400 transition"
-        >
-          ›
-        </button>
+      <!-- Flecha derecha -->
+      <button
+        id="nextBtn"
+        class="absolute right-6 top-1/2 -translate-y-1/2 text-white text-5xl z-50 hover:scale-125 transition"
+      >
+        ❯
+      </button>
 
-        <!-- Content -->
-        <div
-          id="modalContent"
-          class="flex items-center justify-center max-h-[85vh] transition-transform duration-300 scale-95 opacity-0"
-        ></div>
-      </div>
+      <!-- contador -->
+      <div
+        id="modalCounter"
+        class="absolute bottom-8 text-white text-sm opacity-70"
+      ></div>
     </div>
 
     <!-- PRIVACY MODAL -->

@@ -1,21 +1,19 @@
 document.addEventListener("DOMContentLoaded", () => {
   /* ==================================================
-     ELEMENTOS GENERALES
-  ================================================== */
+   ELEMENTOS GENERALES
+================================================== */
 
   const menuToggle = document.getElementById("menuToggle");
   const mobileMenu = document.getElementById("mobileMenu");
-
   const menuLinks = document.querySelectorAll(".menu-link");
-
   const themeToggle = document.getElementById("themeToggle");
   const scrollBtn = document.getElementById("scrollTop");
   const contactForm = document.getElementById("contactForm");
   const navbar = document.getElementById("navbar");
 
   /* ==================================================
-     DARK MODE
-  ================================================== */
+   DARK MODE
+================================================== */
 
   if (localStorage.getItem("theme") === "dark") {
     document.documentElement.classList.add("dark");
@@ -34,11 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /* ==================================================
-     MENU MOBILE (Hamburguesa → X)
-  ================================================== */
-
-  /* ==================================================
-   MENU MOBILE - CLEAN VERSION
+   MENU MOBILE
 ================================================== */
 
   const bars = document.querySelectorAll(".bar");
@@ -48,9 +42,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     mobileMenu.classList.toggle("translate-x-0");
     mobileMenu.classList.toggle("translate-x-full");
+
     document.body.classList.toggle("overflow-hidden");
 
-    // Animación hamburguesa ↔ X
     if (bars.length === 3) {
       bars[0].classList.toggle("rotate-45");
       bars[0].classList.toggle("translate-y-2");
@@ -61,7 +55,6 @@ document.addEventListener("DOMContentLoaded", () => {
       bars[2].classList.toggle("-translate-y-2");
     }
 
-    // Accesibilidad
     menuToggle.setAttribute("aria-expanded", !isOpen);
   }
 
@@ -78,8 +71,8 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   /* ==================================================
-     BOTÓN SCROLL TOP
-  ================================================== */
+   BOTÓN SCROLL TOP
+================================================== */
 
   if (scrollBtn) {
     window.addEventListener("scroll", () => {
@@ -101,11 +94,11 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /* ==================================================
-     NAVBAR EFECTO SCROLL
-  ================================================== */
+   NAVBAR SCROLL
+================================================== */
 
   if (navbar) {
-    window.addEventListener("scroll", function () {
+    window.addEventListener("scroll", () => {
       if (window.scrollY > 50) {
         navbar.classList.add("bg-black/70", "shadow-xl");
         navbar.classList.remove("bg-white/10");
@@ -117,8 +110,8 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /* ==================================================
-     FORM WHATSAPP
-  ================================================== */
+   FORM WHATSAPP
+================================================== */
 
   if (contactForm) {
     contactForm.addEventListener("submit", (e) => {
@@ -134,6 +127,194 @@ document.addEventListener("DOMContentLoaded", () => {
       window.open(url, "_blank");
     });
   }
+
+  /* ==================================================
+   SCROLL REVEAL (ARREGLADO)
+================================================== */
+
+  const revealItems = document.querySelectorAll(".reveal");
+
+  if (revealItems.length) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry, index) => {
+          if (!entry.isIntersecting) return;
+
+          setTimeout(() => {
+            entry.target.classList.remove("opacity-0", "translate-y-12");
+            entry.target.classList.add("opacity-100", "translate-y-0");
+          }, index * 120);
+
+          observer.unobserve(entry.target);
+        });
+      },
+      {
+        threshold: 0.15,
+        rootMargin: "0px 0px -60px 0px",
+      },
+    );
+
+    revealItems.forEach((el) => observer.observe(el));
+  }
+
+  /* ==================================================
+   PREMIUM GALLERY MODAL
+================================================== */
+
+  const galleryItems = Array.from(document.querySelectorAll(".gallery-item"));
+  const modal = document.getElementById("galleryModal");
+  const modalContent = document.getElementById("modalContent");
+  const closeModalBtn = document.getElementById("closeModal");
+  const nextBtn = document.getElementById("nextBtn");
+  const prevBtn = document.getElementById("prevBtn");
+  const modalCounter = document.getElementById("modalCounter");
+
+  let currentIndex = 0;
+  let touchStartX = 0;
+  let touchEndX = 0;
+
+  function renderMedia(index) {
+    const item = galleryItems[index];
+    const type = item.dataset.type;
+    const src = item.dataset.src;
+
+    modalContent.innerHTML = "";
+
+    let element;
+
+    if (type === "image") {
+      element = document.createElement("img");
+      element.src = src;
+      element.className = "max-h-[85vh] w-auto rounded-xl shadow-2xl";
+    }
+
+    if (type === "video") {
+      element = document.createElement("video");
+      element.src = src;
+      element.controls = true;
+      element.autoplay = true;
+      element.muted = true;
+      element.playsInline = true;
+      element.className = "max-h-[85vh] w-auto rounded-xl shadow-2xl";
+    }
+
+    modalContent.appendChild(element);
+
+    modalCounter.textContent = `${index + 1} / ${galleryItems.length}`;
+  }
+
+  function openModal(index) {
+    currentIndex = index;
+    renderMedia(currentIndex);
+
+    modal.classList.remove("hidden");
+    modal.classList.add("flex");
+
+    document.body.classList.add("overflow-hidden");
+
+    setTimeout(() => {
+      modalContent.classList.remove("scale-95", "opacity-0");
+      modalContent.classList.add("scale-100", "opacity-100");
+    }, 10);
+  }
+
+  function closeModal() {
+    modalContent.classList.add("scale-95", "opacity-0");
+
+    setTimeout(() => {
+      modal.classList.add("hidden");
+      modal.classList.remove("flex");
+
+      modalContent.innerHTML = "";
+
+      document.body.classList.remove("overflow-hidden");
+    }, 200);
+  }
+
+  function nextMedia() {
+    currentIndex = (currentIndex + 1) % galleryItems.length;
+    renderMedia(currentIndex);
+  }
+
+  function prevMedia() {
+    currentIndex =
+      (currentIndex - 1 + galleryItems.length) % galleryItems.length;
+
+    renderMedia(currentIndex);
+  }
+
+  galleryItems.forEach((item, index) => {
+    item.addEventListener("click", () => openModal(index));
+  });
+
+  if (closeModalBtn) {
+    closeModalBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      closeModal();
+    });
+  }
+
+  if (nextBtn) {
+    nextBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      nextMedia();
+    });
+  }
+
+  if (prevBtn) {
+    prevBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      prevMedia();
+    });
+  }
+
+  /* ==================================================
+   PRIVACY MODAL
+================================================== */
+
+  const privacyModal = document.getElementById("privacyModal");
+  const openPrivacyBtn = document.getElementById("openPrivacyModal");
+  const closePrivacyBtn = document.getElementById("closePrivacyModal");
+
+  function openPrivacy() {
+    privacyModal.classList.remove("hidden");
+    privacyModal.classList.add("flex");
+
+    document.body.classList.add("overflow-hidden");
+  }
+
+  function closePrivacy() {
+    privacyModal.classList.add("hidden");
+    privacyModal.classList.remove("flex");
+
+    document.body.classList.remove("overflow-hidden");
+  }
+
+  if (openPrivacyBtn) openPrivacyBtn.addEventListener("click", openPrivacy);
+  if (closePrivacyBtn) closePrivacyBtn.addEventListener("click", closePrivacy);
+
+  privacyModal?.addEventListener("click", (e) => {
+    if (e.target === privacyModal) closePrivacy();
+  });
+
+  /* ==================================================
+   VIDEO PREVIEW HOVER
+================================================== */
+
+  const previewVideos = document.querySelectorAll(".gallery-item video");
+
+  previewVideos.forEach((video) => {
+    video.muted = true;
+
+    video.parentElement.addEventListener("mouseenter", () => {
+      video.play();
+    });
+
+    video.parentElement.addEventListener("mouseleave", () => {
+      video.pause();
+      video.currentTime = 0;
+    });
+  });
 });
 
 /* ==================================================
@@ -170,7 +351,7 @@ setInterval(changeWord, 3500);
 changeWord();
 
 /* ==================================================
-   THREE.JS HERO ANIMATION
+   THREE JS HERO
 ================================================== */
 
 const canvas = document.getElementById("heroCanvas");
@@ -179,13 +360,13 @@ if (canvas) {
   const scene = new THREE.Scene();
 
   const camera = new THREE.PerspectiveCamera(
-    1000,
+    60,
     window.innerWidth / window.innerHeight,
-    0.1,
-    100,
+    1,
+    1000,
   );
 
-  camera.position.z = 5;
+  camera.position.z = 80;
 
   const renderer = new THREE.WebGLRenderer({
     canvas,
@@ -194,262 +375,120 @@ if (canvas) {
   });
 
   renderer.setSize(window.innerWidth, window.innerHeight);
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  renderer.setPixelRatio(window.devicePixelRatio);
 
-  const colors = [0xf7f30a, 0x0af77d, 0x0a0ef7, 0xf70a84, 0x22ff88];
+  const particlesCount = 180;
 
-  const confetti = [];
-  const confettiCount = 80;
+  const geometry = new THREE.BufferGeometry();
 
-  for (let i = 0; i < confettiCount; i++) {
-    const size = Math.random() * 5 + 1;
+  const positions = new Float32Array(particlesCount * 3);
+  const colors = new Float32Array(particlesCount * 3);
 
-    const geometry = new THREE.BoxGeometry(size, size, size);
-    const material = new THREE.MeshBasicMaterial({
-      color: colors[Math.floor(Math.random() * colors.length)],
-    });
+  const colorPalette = [
+    new THREE.Color("#ec4899"),
+    new THREE.Color("#facc15"),
+    new THREE.Color("#22c55e"),
+    new THREE.Color("#a855f7"),
+  ];
 
-    const cube = new THREE.Mesh(geometry, material);
+  for (let i = 0; i < particlesCount; i++) {
+    positions[i * 3] = (Math.random() - 0.5) * 200;
+    positions[i * 3 + 1] = (Math.random() - 0.5) * 120;
+    positions[i * 3 + 2] = (Math.random() - 0.5) * 120;
 
-    cube.position.x = (Math.random() - 0.5) * 12;
-    cube.position.y = (Math.random() - 0.5) * 12;
-    cube.position.z = (Math.random() - 0.5) * 12;
+    const color = colorPalette[Math.floor(Math.random() * colorPalette.length)];
 
-    cube.rotationSpeed = Math.random() * 0.08;
-
-    scene.add(cube);
-    confetti.push(cube);
+    colors[i * 3] = color.r;
+    colors[i * 3 + 1] = color.g;
+    colors[i * 3 + 2] = color.b;
   }
 
-  function createExplosion(x, y) {
-    for (let i = 0; i < 6; i++) {
-      const size = Math.random() * 4 + 1;
+  geometry.setAttribute("position", new THREE.BufferAttribute(positions, 3));
 
-      const geometry = new THREE.BoxGeometry(size, size, size);
-      const material = new THREE.MeshBasicMaterial({
-        color: colors[Math.floor(Math.random() * colors.length)],
-      });
+  geometry.setAttribute("color", new THREE.BufferAttribute(colors, 3));
 
-      const cube = new THREE.Mesh(geometry, material);
-
-      cube.position.set(x, y, 0);
-
-      cube.velocity = {
-        x: (Math.random() - 0.5) * 9,
-        y: (Math.random() - 0.5) * 9,
-        z: (Math.random() - 0.5) * 9,
-      };
-
-      scene.add(cube);
-      confetti.push(cube);
-    }
-  }
-
-  window.addEventListener("click", (event) => {
-    const mouseX = (event.clientX / window.innerWidth - 0.5) * 1;
-    const mouseY = -(event.clientY / window.innerHeight - 0.5) * 1;
-
-    createExplosion(mouseX, mouseY);
+  const material = new THREE.PointsMaterial({
+    size: 2.5,
+    vertexColors: true,
+    transparent: true,
+    opacity: 0.8,
   });
 
-  window.addEventListener("resize", () => {
-    camera.aspect = window.innerWidth / window.innerHeight;
-    camera.updateProjectionMatrix();
-    renderer.setSize(window.innerWidth, window.innerHeight);
-  });
+  const particles = new THREE.Points(geometry, material);
+
+  scene.add(particles);
 
   function animate() {
     requestAnimationFrame(animate);
 
-    confetti.forEach((cube) => {
-      cube.rotation.x += cube.rotationSpeed;
-      cube.rotation.y += cube.rotationSpeed;
-
-      if (cube.velocity) {
-        cube.position.x += cube.velocity.x;
-        cube.position.y += cube.velocity.y;
-        cube.position.z += cube.velocity.z;
-      }
-    });
+    particles.rotation.y += 0.0008;
+    particles.rotation.x += 0.0003;
 
     renderer.render(scene, camera);
   }
 
   animate();
+
+  window.addEventListener("resize", () => {
+    renderer.setSize(window.innerWidth, window.innerHeight);
+
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+  });
 }
-/* ==================================================
-   PREMIUM GALLERY
-================================================== */
+// cards 3d effect
+const cards = document.querySelectorAll(".service-card");
 
-const galleryItems = Array.from(document.querySelectorAll(".gallery-item"));
-const modal = document.getElementById("galleryModal");
-const modalContent = document.getElementById("modalContent");
-const closeModalBtn = document.getElementById("closeModal");
-const nextBtn = document.getElementById("nextBtn");
-const prevBtn = document.getElementById("prevBtn");
-const modalCounter = document.getElementById("modalCounter");
+cards.forEach((card) => {
+  card.addEventListener("mousemove", (e) => {
+    const rect = card.getBoundingClientRect();
 
-let currentIndex = 0;
-let touchStartX = 0;
-let touchEndX = 0;
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
 
-function renderMedia(index) {
-  const item = galleryItems[index];
-  const type = item.dataset.type;
-  const src = item.dataset.src;
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
 
-  modalContent.innerHTML = "";
+    const rotateX = (y - centerY) / 15;
+    const rotateY = (centerX - x) / 15;
 
-  let element;
+    card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.04)`;
+  });
 
-  if (type === "image") {
-    element = document.createElement("img");
-    element.src = src;
-    element.className = "max-h-[85vh] w-auto rounded-xl shadow-2xl";
-  }
-
-  if (type === "video") {
-    element = document.createElement("video");
-    element.src = src;
-    element.controls = true;
-    element.autoplay = true;
-    element.className = "max-h-[85vh] w-auto rounded-xl shadow-2xl";
-  }
-
-  modalContent.appendChild(element);
-  modalCounter.textContent = `${index + 1} / ${galleryItems.length}`;
-}
-
-function openModal(index) {
-  currentIndex = index;
-  renderMedia(currentIndex);
-
-  modal.classList.remove("hidden");
-  modal.classList.add("flex");
-  document.body.classList.add("overflow-hidden");
-
-  setTimeout(() => {
-    modalContent.classList.remove("scale-95", "opacity-0");
-    modalContent.classList.add("scale-100", "opacity-100");
-  }, 10);
-}
-
-function closeModal() {
-  modalContent.classList.add("scale-95", "opacity-0");
-
-  setTimeout(() => {
-    modal.classList.add("hidden");
-    modal.classList.remove("flex");
-    modalContent.innerHTML = "";
-    document.body.classList.remove("overflow-hidden");
-  }, 200);
-}
-
-function nextMedia() {
-  currentIndex = (currentIndex + 1) % galleryItems.length;
-  renderMedia(currentIndex);
-}
-
-function prevMedia() {
-  currentIndex = (currentIndex - 1 + galleryItems.length) % galleryItems.length;
-  renderMedia(currentIndex);
-}
-
-/* Click items */
-galleryItems.forEach((item, index) => {
-  item.addEventListener("click", () => openModal(index));
+  card.addEventListener("mouseleave", () => {
+    card.style.transform = "rotateX(0) rotateY(0) scale(1)";
+  });
 });
 
-/* Buttons */
-if (closeModalBtn) closeModalBtn.addEventListener("click", closeModal);
-if (nextBtn) nextBtn.addEventListener("click", nextMedia);
-if (prevBtn) prevBtn.addEventListener("click", prevMedia);
+// =======================
+// ANIMACIÓN SCROLL CARDS
+// =======================
 
-/* Click outside */
-modal.addEventListener("click", (e) => {
-  if (e.target === modal) closeModal();
-});
+function revealCards() {
+  const reveals = document.querySelectorAll(".reveal");
 
-/* Keyboard */
-document.addEventListener("keydown", (e) => {
-  if (modal.classList.contains("hidden")) return;
+  reveals.forEach((element) => {
+    const windowHeight = window.innerHeight;
+    const elementTop = element.getBoundingClientRect().top;
 
-  if (e.key === "Escape") closeModal();
-  if (e.key === "ArrowRight") nextMedia();
-  if (e.key === "ArrowLeft") prevMedia();
-});
+    const visible = 120;
 
-/* Swipe mobile */
-modal.addEventListener("touchstart", (e) => {
-  touchStartX = e.changedTouches[0].screenX;
-});
-
-modal.addEventListener("touchend", (e) => {
-  touchEndX = e.changedTouches[0].screenX;
-
-  if (touchEndX < touchStartX - 50) nextMedia();
-  if (touchEndX > touchStartX + 50) prevMedia();
-});
-
-/* ==================================================
-   PRIVACY MODAL
-================================================== */
-
-const privacyModal = document.getElementById("privacyModal");
-const openPrivacyBtn = document.getElementById("openPrivacyModal");
-const closePrivacyBtn = document.getElementById("closePrivacyModal");
-
-function openPrivacy() {
-  privacyModal.classList.remove("hidden");
-  privacyModal.classList.add("flex");
-  document.body.classList.add("overflow-hidden");
-}
-
-function closePrivacy() {
-  privacyModal.classList.add("hidden");
-  privacyModal.classList.remove("flex");
-  document.body.classList.remove("overflow-hidden");
-}
-
-if (openPrivacyBtn) openPrivacyBtn.addEventListener("click", openPrivacy);
-if (closePrivacyBtn) closePrivacyBtn.addEventListener("click", closePrivacy);
-
-if (privacyModal) {
-  privacyModal.addEventListener("click", (e) => {
-    if (e.target === privacyModal) closePrivacy();
+    if (elementTop < windowHeight - visible) {
+      element.classList.add("active");
+    }
   });
 }
 
-document.addEventListener("keydown", (e) => {
-  if (e.key === "Escape" && !privacyModal.classList.contains("hidden")) {
-    closePrivacy();
-  }
-});
+window.addEventListener("scroll", revealCards);
+window.addEventListener("load", revealCards);
 
-/* ==================================================
-   VIDEO PREVIEW HOVER
-================================================= */
-const previewVideos = document.querySelectorAll(".gallery-item video");
-
-previewVideos.forEach((video) => {
-  video.muted = true;
-
-  video.parentElement.addEventListener("mouseenter", () => {
-    video.play();
-  });
-
-  video.parentElement.addEventListener("mouseleave", () => {
-    video.pause();
-    video.currentTime = 0;
-  });
-});
-if (type === "video") {
-  const video = document.createElement("video");
-  video.src = src;
-  video.controls = true;
-  video.autoplay = true;
-  video.muted = true;
-  video.playsInline = true;
-  video.className = "max-h-[80vh] w-auto rounded-xl shadow-2xl";
-  modalContent.appendChild(video);
-}
+tailwind.config = {
+  darkMode: "class",
+  theme: {
+    extend: {
+      scrollMargin: {
+        24: "6rem",
+      },
+    },
+  },
+};
